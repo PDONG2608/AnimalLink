@@ -10,5 +10,4 @@
         <item name="cornerSize">@dimen/radius_item_pick</item> <!-- Adjust corner size as needed -->
     </style>
 
-    <dimen name="radius_item_pick">10dp</dimen>
 </resources>

@@ -2,4 +2,6 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="background_main_screen">#7C6F6E</color>
+    <color name="background_item_border">#27BF2D</color>
 </resources>

@@ -10,7 +10,14 @@ object DataItem {
         R.drawable.groot,
         R.drawable.hulk,
         R.drawable.ironman,
-        R.drawable.thor
+        R.drawable.thor,
+        R.drawable.drstrange,
+        R.drawable.loki,
+        R.drawable.thanos,
+        R.drawable.blackwindow,
+        R.drawable.piterpacker,
+        R.drawable.challa,
+        R.drawable.piterpacker1
     )
     val randomList = generateRandomList(listItem, 48)
     private fun generateRandomList(drawableList: List<Int>, totalItems: Int): List<Int> {
