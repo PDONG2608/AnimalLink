@@ -18,7 +18,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var mPickerAdapter: PickLayoutAdapter
     private lateinit var save2DrawableItem : ArrayList<Int>
     private lateinit var save2PositionItem : ArrayList<Int>
-    private var saveOldPos = -1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -37,10 +36,10 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    private fun initAdapter(listItem: List<Int>) {
+    private fun initAdapter(listItem: ArrayList<Int>) {
         rcvPickLayout = binding!!.rcvPickLayout
-        rcvPickLayout.layoutManager = GridLayoutManager(this, 8)
-        mPickerAdapter = PickLayoutAdapter(listItem,rcvPickLayout)
+        rcvPickLayout.layoutManager = GridLayoutManager(this, DataItem.NUM_COL_PICK_LAYOUT)
+        mPickerAdapter = PickLayoutAdapter(listItem, rcvPickLayout)
         rcvPickLayout.adapter = mPickerAdapter
     }
 }
