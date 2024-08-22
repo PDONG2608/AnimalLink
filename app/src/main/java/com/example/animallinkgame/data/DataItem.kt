@@ -6,6 +6,7 @@ import kotlin.random.Random
 object DataItem {
     const val NUM_COL_PICK_LAYOUT = 8
     const val NUM_ROW_PICK_LAYOUT = 6
+    const val TIME_VISIBLE = 500L
     private val listItem = arrayListOf(
         R.drawable.caption,
         R.drawable.drdoom,
@@ -13,13 +14,13 @@ object DataItem {
         R.drawable.hulk,
         R.drawable.ironman,
         R.drawable.thor,
-        R.drawable.drstrange,
-        R.drawable.loki,
-        R.drawable.thanos,
-        R.drawable.blackwindow,
-        R.drawable.piterpacker,
-        R.drawable.challa,
-        R.drawable.piterpacker1
+//        R.drawable.drstrange,
+//        R.drawable.loki,
+//        R.drawable.thanos,
+//        R.drawable.blackwindow,
+//        R.drawable.piterpacker,
+//        R.drawable.challa,
+//        R.drawable.piterpacker1
     )
     val randomList = generateRandomList(listItem, 48)
     private fun generateRandomList(drawableList: ArrayList<Int>, totalItems: Int): ArrayList<Int> {

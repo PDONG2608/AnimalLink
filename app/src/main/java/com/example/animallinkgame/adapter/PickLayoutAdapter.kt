@@ -1,5 +1,7 @@
 package com.example.animallinkgame.adapter
 
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -52,6 +54,7 @@ class PickLayoutAdapter(
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private var imageItem: ShapeableImageView = itemView.findViewById(R.id.item_pick)
         var borderItem: ShapeableImageView = itemView.findViewById(R.id.border_item_pick)
+        var line_connectz = itemView.findViewById<View>(R.id.line_connect_item)
 
         fun bind(drawablesId: Int) {
             imageItem.setImageResource(drawablesId)
@@ -71,15 +74,26 @@ class PickLayoutAdapter(
             imageItem.setPosition(position)
             selectedItems.add(imageItem)
             if (selectedItems.size == 2) {
-                val canConnect = Utils.calculateConnect(board, selectedItems)
-                Log.i("dongdong", "check can connect =  $canConnect between ${selectedItems[0].getPosition()} and ${selectedItems[1].getPosition()}")
-                if (canConnect && selectedItems[0].getDrawablesId() == selectedItems[1].getDrawablesId()) {
+                val connectItem = Utils.calculateConnect(board, selectedItems)
+                Log.i("dongdong", "check can connect =  ${connectItem.isConnectItem()} between ${selectedItems[0].getPosition()} and ${selectedItems[1].getPosition()}")
+                if (connectItem.isConnectItemz && selectedItems[0].getDrawablesId() == selectedItems[1].getDrawablesId()) {
                     val viewHolder1 =
                         rcvPickLayout.findViewHolderForAdapterPosition(selectedItems[0].getPosition()) as PickLayoutAdapter.ViewHolder
                     val viewHolder2 =
                         rcvPickLayout.findViewHolderForAdapterPosition(selectedItems[1].getPosition()) as PickLayoutAdapter.ViewHolder
-                    viewHolder1.itemView.visibility = View.GONE
-                    viewHolder2.itemView.visibility = View.GONE
+                    connectItem.getListPositionConnect()?.forEach {
+                       val viewHolder = rcvPickLayout.findViewHolderForAdapterPosition(it) as PickLayoutAdapter.ViewHolder
+                        viewHolder.line_connectz.visibility = View.VISIBLE
+                        Handler(Looper.getMainLooper()).postDelayed({
+                            viewHolder.line_connectz.visibility = View.GONE
+                        }, DataItem.TIME_VISIBLE)
+                    }
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        viewHolder1.imageItem.visibility = View.GONE
+                        viewHolder1.borderItem.visibility = View.GONE
+                        viewHolder2.imageItem.visibility = View.GONE
+                        viewHolder2.borderItem.visibility = View.GONE
+                    }, DataItem.TIME_VISIBLE)
                     reset2Items()
                 } else {
                     val viewHolder = rcvPickLayout.findViewHolderForAdapterPosition(

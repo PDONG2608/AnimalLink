@@ -8,6 +8,8 @@
     tools:context=".MainActivity">
 
    <androidx.recyclerview.widget.RecyclerView
+       android:background="@color/background_layout_pick"
+       android:padding="10dp"
        android:id="@+id/rcv_pick_layout"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
